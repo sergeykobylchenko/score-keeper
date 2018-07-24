@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Score Keeper</title>
+</head>
+<body>
+    <h1><span id = "playerOne">0</span> to <span id = "playerTwo">0</span></h1>
+    <h3>Playing to: <span id = "playingLimit">5</span></h3>
+    <input type="number" value="5">
+    <button id = "playerOneButton">Player One</button>
+    <button id = "playerTwoButton">Player Two</button>
+    <button id = "resetButton">Reset</button>
+
+    <script>
+        let score1 = document.querySelector("#playerOne");
+        let score2 = document.querySelector("#playerTwo");
+        const playLimit = document.querySelector("#playingLimit");
+        const button1 = document.querySelector("#playerOneButton");
+        const button2 = document.querySelector("#playerTwoButton");
+        const reset = document.querySelector("#resetButton");
+        const inputPlayLimit = document.querySelector("input");
+        let isGameOver = false;
+
+        const scoreReseting = () => {
+            playLimit.innerText = inputPlayLimit.value;
+            score1.innerText = "0";
+            score2.innerText = "0";
+            score1.style.color = "black";
+            score2.style.color = "black";
+            isGameOver = false;
+        }
+        
+        inputPlayLimit.addEventListener("change",scoreReseting);
+
+        button1.addEventListener("click", function(){
+            if (!isGameOver){
+                score1.innerText = parseInt(score1.innerText) + 1;
+                if (score1.innerText === playLimit.innerText){
+                    score1.style.color = "green";
+                    isGameOver = true;
+                    }
+                }
+        });
+
+        button2.addEventListener("click", function(){
+            if (!isGameOver){
+                score2.innerText = parseInt(score2.innerText) + 1;
+                if (score2.innerText === playLimit.innerText){
+                    score2.style.color = "green";
+                    isGameOver = true;
+                }
+            };
+        });
+        
+        reset.addEventListener("click", scoreReseting);
+
+    </script>
+</body>
+</html>
